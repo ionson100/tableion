@@ -30,18 +30,17 @@ export default class Tableion extends Component{
 
      }
      renderHead(){
-         this.head.forEach(e=>{
-             return(<div style={hh}>{e}</div>);
-         })
+         return(
+             this.head.map((e,i)=>{
+                 return (<div key={i} style={hh}>{e}</div>);
+             })
+         )
      }
      render() {
          console.log("e",this.head)
          return (
              <div style={gh}>
-                 { this.head.map((e,i)=>{
-                     return (<div style={hh}>{e}</div>);
-                 })}
-
+                 {this.renderHead()}
                  <div style={gg}>1</div>
                  <div style={gg}>2</div>
                  <div style={gg}>3</div>
