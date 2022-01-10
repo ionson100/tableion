@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './tableion/index';
 
 import reportWebVitals from './reportWebVitals';
-
+const head1=['первый','второй','третий']
 ReactDOM.render(
   <React.StrictMode>
-    <App body='body' head='heads'/>
+    <App head={head1} />
   </React.StrictMode>,
   document.getElementById('root')
 );
