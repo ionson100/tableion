@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import App from './tableion';
 
 test('renders learn react link', () => {
   render(<App />);
