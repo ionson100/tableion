@@ -29,15 +29,26 @@ export default class Tableion extends Component{
          this.body=props.body;
 
      }
+
+     renderGridTemplateColumns(o){
+         let w='';
+         this.head.map((e,i)=>{
+             w=w+' '+e.Width;
+         })
+         o.gridTemplateColumns=w;
+         console.log("width",o.gridTemplateColumns)
+     }
+
      renderHead(){
          return(
              this.head.map((e,i)=>{
-                 return (<div key={i} style={hh}>{e}</div>);
+                 return (<div key={i} style={e.getStyleObject()}>{e.content}</div>);
              })
          )
      }
      render() {
          console.log("e",this.head)
+         this.renderGridTemplateColumns(gh)
          return (
              <div style={gh}>
                  {this.renderHead()}
@@ -54,4 +65,26 @@ export default class Tableion extends Component{
          );
      }
 
+}
+ export class TemplateHead{
+    constructor(content) {
+        this.content=content;
+        this.textAlign='center';
+        this.background= '#ccb6b6';
+        this. padding= '.1em';
+        this.fontSize= '1vw';
+        this.width='1fr';
+    }
+    getStyleObject(){
+        return {
+
+            fontSize: this.fontSize,
+            padding: this.padding,
+            background: this.background,
+            textAlign: this.textAlign
+        }
+    }
+    get Width(){
+        return this.width;
+    }
 }
