@@ -1,0 +1,20 @@
+.celldef{
+    font-size: 1vw;
+    padding: 2px;
+    background: cornsilk;
+    text-align: center ;
+}
+.cellred{
+    color: red;
+    font-size: 1vw;
+    padding: 2px;
+    background: cornsilk;
+    text-align: right ;
+}
+.cellhead{
+    color: white;
+    font-size: 1vw;
+    padding: .1em;
+    background: black;
+    text-align: center;
+}

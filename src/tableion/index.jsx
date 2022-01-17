@@ -5,15 +5,9 @@ const gh={
     background: '#737272',
     display: 'grid',
     gridTemplateRows: 'none',
-    gridTemplateColumns: '1fr 1fr 1fr',
     gridGap: '.11vw'
 }
-const gg={
-    fontSize: '1vw',
-    padding: '.1em',
-    background: '#f2ebeb',
-    textAlign: 'center'
-}
+
 
 
 
@@ -21,14 +15,14 @@ export default class Tableion extends Component{
      constructor(props) {
          super(props);
          this.head=props.head;
-         this.rows=props.rows;
+         this.body=props.body;
 
      }
 
      renderGridTemplateColumns(o){
          let w='';
          this.head.map((e,i)=>{
-             w=w+' '+e.Width;
+             w=w+' '+e.width;
          })
          o.gridTemplateColumns=w;
          console.log("width",o.gridTemplateColumns)
@@ -37,85 +31,35 @@ export default class Tableion extends Component{
      renderHead(){
          return(
              this.head.map((e,i)=>{
-                 return (<div key={i} style={e.getStyleObject()}>{e.content}</div>);
+                 return (<div key={i} className={e.className} >{e.content}</div>);
              })
          )
      }
-     renderRows(){
-         let ii=0;
-         const res=[]
-         Array.from(this.rows).map((e)=>{
-             const tempRow=e.getArrayTemplateRow();
-             tempRow.map((r)=>{
-                 ii++;
-                 console.log("div",r.content)
-                 res.push(<div key={ii} style={r.getStyleObject()}>{r.content}</div>);
-
-             })
-
-         })
-         return (res);
-     }
      render() {
+         console.log("e",this.head)
          this.renderGridTemplateColumns(gh)
          return (
              <div style={gh}>
                  {this.renderHead()}
-                 {this.renderRows()}
-                 {/*<div style={gg}>1</div>*/}
-                 {/*<div style={gg}>2</div>*/}
-                 {/*<div style={gg}>3</div>*/}
-                 {/*<div style={gg}>4</div>*/}
-                 {/*<div style={gg}>5</div>*/}
-                 {/*<div style={gg}>6</div>*/}
-                 {/*<div style={gg}>7</div>*/}
-                 {/*<div style={gg}>8</div>*/}
-                 {/*<div style={gg}>9</div>*/}
+                 <div className="celldef">1</div>
+                 <div className="celldef">2</div>
+                 <div className="cellred">3</div>
+                 <div className="celldef">4</div>
+                 <div className="celldef">5</div>
+                 <div className="cellred">6</div>
+                 <div className="celldef">7</div>
+                 <div className="celldef">8</div>
+                 <div className="cellred">9</div>
              </div>
          );
      }
 
 }
  export class TemplateHead{
-    constructor(content) {
+    constructor({content,className,width}) {
         this.content=content;
-        this.textAlign='center';
-        this.background= '#ccb6b6';
-        this. padding= '.1em';
-        this.fontSize= '1vw';
-        this.width='1fr';
-    }
-    getStyleObject(){
-        return {
-
-            fontSize: this.fontSize,
-            padding: this.padding,
-            background: this.background,
-            textAlign: this.textAlign
-        }
-    }
-    get Width(){
-        return this.width;
-    }
-}
-
-export class TemplateRow{
-    constructor(content,uuid) {
-        this.content=content;
-        this.uuid=uuid;
-        this.textAlign='center';
-        this.background= '#e7dede';
-        this. padding= '.1em';
-        this.fontSize= '1vw';
-    }
-    getStyleObject(){
-        return {
-
-            fontSize: this.fontSize,
-            padding: this.padding,
-            background: this.background,
-            textAlign: this.textAlign
-        }
+        this.className = className;
+        this.width=width===undefined?'1fr':width;
     }
 
 }
