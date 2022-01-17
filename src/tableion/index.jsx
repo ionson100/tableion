@@ -15,7 +15,7 @@ export default class Tableion extends Component{
      constructor(props) {
          super(props);
          this.head=props.head;
-         this.body=props.body;
+         this.rows=props.rows;
 
      }
 
@@ -35,21 +35,28 @@ export default class Tableion extends Component{
              })
          )
      }
+    renderRows(){
+        let ii=0;
+        const res=[]
+        Array.from(this.rows).map((e)=>{
+            const tempRow=e.getArrayTemplateRow();
+            tempRow.map((r)=>{
+                ii++;
+                console.log("div",r.content)
+                res.push(<div key={ii} style={r.getStyleObject()}>{r.content}</div>);
+
+            })
+
+        })
+        return (res);
+    }
      render() {
          console.log("e",this.head)
          this.renderGridTemplateColumns(gh)
          return (
              <div style={gh}>
                  {this.renderHead()}
-                 <div className="celldef">1</div>
-                 <div className="celldef">2</div>
-                 <div className="cellred">3</div>
-                 <div className="celldef">4</div>
-                 <div className="celldef">5</div>
-                 <div className="cellred">6</div>
-                 <div className="celldef">7</div>
-                 <div className="celldef">8</div>
-                 <div className="cellred">9</div>
+                 {this.renderRows()}
              </div>
          );
      }
@@ -60,6 +67,27 @@ export default class Tableion extends Component{
         this.content=content;
         this.className = className;
         this.width=width===undefined?'1fr':width;
+    }
+
+}
+
+export class TemplateRow{
+    constructor(content,uuid) {
+        this.content=content;
+        this.uuid=uuid;
+        this.textAlign='center';
+        this.background= '#e7dede';
+        this. padding= '.1em';
+        this.fontSize= '1vw';
+    }
+    getStyleObject(){
+        return {
+
+            fontSize: this.fontSize,
+            padding: this.padding,
+            background: this.background,
+            textAlign: this.textAlign
+        }
     }
 
 }
